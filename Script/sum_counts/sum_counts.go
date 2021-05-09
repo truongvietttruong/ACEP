@@ -31,9 +31,9 @@ func addCounts(counts map[string]int, inputFilepath string, threshold int, toLow
 
 		var key string
 		if toLower {
-			key = strings.ToLower(splits[0])
+			key = strings.ToLower(splits[1])
 		} else {
-			key = splits[0]
+			key = splits[1]
 		}
 
 		count, err := strconv.Atoi(splits[0])

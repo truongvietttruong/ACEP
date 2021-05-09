@@ -12,7 +12,7 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-func addCounts(counts map[string]int, inputFilepath string, threshold int) error {
+func addCounts(counts map[string]int, inputFilepath string, threshold int, toLower bool) error {
 	fp, err := os.Open(inputFilepath)
 	if err != nil {
 		return err
@@ -29,7 +29,13 @@ func addCounts(counts map[string]int, inputFilepath string, threshold int) error
 			continue
 		}
 
-		key := splits[1]
+		var key string
+		if toLower {
+			key = strings.ToLower(splits[0])
+		} else {
+			key = splits[0]
+		}
+
 		count, err := strconv.Atoi(splits[0])
 		if err != nil {
 			return err
@@ -56,6 +62,7 @@ func appAction(c *cli.Context) error {
 	inputDir := c.String("inputDir")
 	outputFilepath := c.String("outputFilepath")
 	threshold := c.Int("threshold")
+	toLower := c.Bool("toLower")
 
 	globPattern := filepath.Join(inputDir, "*.txt")
 	inputFilepaths, err := doublestar.Glob(globPattern)
@@ -68,7 +75,7 @@ func appAction(c *cli.Context) error {
 	for _, inputFilepath := range inputFilepaths {
 		fmt.Println(inputFilepath)
 
-		if err := addCounts(counts, inputFilepath, threshold); err != nil {
+		if err := addCounts(counts, inputFilepath, threshold, toLower); err != nil {
 			return err
 		}
 	}
@@ -105,6 +112,10 @@ func main() {
 				Name:    "threshold",
 				Aliases: []string{"t"},
 				Value:   1,
+			},
+			&cli.BoolFlag{
+				Name:    "toLower",
+				Aliases: []string{"l"},
 			},
 		},
 

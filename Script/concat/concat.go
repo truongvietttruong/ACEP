@@ -36,6 +36,9 @@ func writeToFile(writer *bufio.Writer, invalidWriter *bufio.Writer, inputFilepat
 		return err
 	}
 
+	writer.Flush()
+	invalidWriter.Flush()
+
 	return nil
 }
 
@@ -91,8 +94,6 @@ func appAction(c *cli.Context) error {
 
 	bar.Finish()
 
-	writer.Flush()
-	invalidWriter.Flush()
 	errorWriter.Flush()
 
 	return nil

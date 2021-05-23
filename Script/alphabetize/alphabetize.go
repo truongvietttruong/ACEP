@@ -12,7 +12,7 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-func sortTargetFiles(
+func alphabetize(
 	inputFilepath string,
 	delimiter string,
 	writers map[rune]*bufio.Writer,
@@ -123,7 +123,7 @@ func appAction(c *cli.Context) error {
 	for inputFileIdx, inputFilepath := range inputFilepaths {
 		fmt.Printf("%v/%v\r", inputFileIdx, len(inputFilepaths))
 
-		if err := sortTargetFiles(inputFilepath, delimiter, writers, invalidWriters); err != nil {
+		if err := alphabetize(inputFilepath, delimiter, writers, invalidWriters); err != nil {
 			errorWriter.WriteString(fmt.Sprintln(inputFilepath))
 			continue
 		}

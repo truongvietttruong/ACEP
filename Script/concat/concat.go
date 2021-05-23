@@ -84,7 +84,8 @@ func appAction(c *cli.Context) error {
 		bar.Increment()
 
 		if err := writeToFile(writer, invalidWriter, inputFilepath, delimiter); err != nil {
-			return err
+			errorWriter.WriteString(fmt.Sprintln(inputFilepath))
+			continue
 		}
 	}
 

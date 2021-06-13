@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -25,7 +26,7 @@ func splitLines(
 
 	for scanner.Scan() {
 		line := scanner.Text()
-		line = strings.Replace(line, "\x00", "", -1)
+		//line = strings.Replace(line, "\x00", "", -1)
 
 		if len(line) == 0 {
 			continue
@@ -59,6 +60,10 @@ func appAction(c *cli.Context) error {
 	delimiter := c.String("delimiter")
 	startChr := []rune(c.String("startChr"))[0]
 	endChr := []rune(c.String("endChr"))[0]
+
+	if delimiter == "" {
+		return errors.New("delimiter must be specified")
+	}
 
 	if err := os.MkdirAll(outputDir, 0666); err != nil {
 		return err

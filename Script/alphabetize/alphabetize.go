@@ -122,7 +122,7 @@ func appAction(c *cli.Context) error {
 
 	errorWriter := bufio.NewWriter(errorOutputFile)
 
-	//Scan the target file and sort by the initial character of each line
+	//Scan the target files and sort by the initial character of each line
 	for inputFileIdx, inputFilepath := range inputFilepaths {
 		fmt.Printf("%v/%v\r", inputFileIdx, len(inputFilepaths))
 

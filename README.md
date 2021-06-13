@@ -13,3 +13,9 @@ If you are interested if your email address is in a data breach, use [Have I Bee
 - [Cit0day](./Data/Cit0day)
 - [Collection #1](./Data/Collection_1)
 
+## Comment
+
+I assume that combolists are formatted like `<email><delimiter><password or hash>`, although some combolists apparently have `<password or hash><delimiter><email>` or `<email>` or some sort of garbage (at least for me without any profound knowledge...).
+
+Note that analysis results may not be accurate because of my humble processing.
+

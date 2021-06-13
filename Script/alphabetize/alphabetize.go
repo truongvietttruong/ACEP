@@ -36,17 +36,20 @@ func alphabetize(
 		firstChr := []rune(line)[0]
 		firstChr = unicode.ToLower(firstChr)
 
-		splits := strings.SplitN(line, delimiter, 2)
-		if len(splits) != 2 {
-			if invalidWriter, exists := invalidWriters[firstChr]; exists {
-				invalidWriter.WriteString(fmt.Sprintf("%v\t%v\n", line, inputFilepath))
-			}
+		if _, exists := writers[firstChr]; !exists {
 			continue
 		}
 
-		if writer, exists := writers[firstChr]; exists {
-			writer.WriteString(fmt.Sprintf("%v\t%v\t%v\n", splits[0], splits[1], inputFilepath))
+		splits := strings.SplitN(line, delimiter, 2)
+		if len(splits) != 2 {
+			invalidWriter := invalidWriters[firstChr]
+			invalidWriter.WriteString(fmt.Sprintf("%v\t%v\n", line, inputFilepath))
+
+			continue
 		}
+
+		writer := writers[firstChr]
+		writer.WriteString(fmt.Sprintf("%v\t%v\t%v\n", splits[0], splits[1], inputFilepath))
 	}
 	if err := scanner.Err(); err != nil {
 		return err

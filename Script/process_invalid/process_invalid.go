@@ -11,7 +11,7 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-func splitLines(
+func processInvalid(
 	inputFilepath string,
 	delimiter string,
 	writer *bufio.Writer,
@@ -102,7 +102,7 @@ func appAction(c *cli.Context) error {
 		inputFilepath := filepath.Join(inputDir, string(c)+".txt")
 		fmt.Println(inputFilepath)
 
-		if err := splitLines(inputFilepath, delimiter, writers[c], invalidWriters[c]); err != nil {
+		if err := processInvalid(inputFilepath, delimiter, writers[c], invalidWriters[c]); err != nil {
 			return err
 		}
 	}

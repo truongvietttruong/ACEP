@@ -45,6 +45,10 @@ func convertTSVToParquet(inputFilepath string, outputFilepath string) error {
 		line := scanner.Text()
 		splits := strings.Split(line, "\t")
 
+		if len(splits) != 3 {
+			continue
+		}
+
 		record := Combolist{
 			Email:  splits[0],
 			POH:    splits[1],

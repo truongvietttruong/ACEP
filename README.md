@@ -13,6 +13,7 @@ If you are interested if your email address is in a data breach, use [Have I Bee
 - [Cit0day](./Data/Cit0day)
 - [Collection #1](./Data/Collection_1)
 - [Collection #3](./Data/Collection_3)
+- [Collection #4](./Data/Collection_4)
 - [Collection #5](./Data/Collection_5)
 
 ## Summary

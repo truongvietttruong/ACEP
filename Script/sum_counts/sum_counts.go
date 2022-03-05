@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/bmatcuk/doublestar/v3"
+	"github.com/maeda6uiui/go-counter"
 	"github.com/urfave/cli/v2"
 )
 
@@ -88,8 +89,11 @@ func appAction(c *cli.Context) error {
 
 	writer := bufio.NewWriter(outputFile)
 
-	for k, v := range counts {
-		writer.WriteString(fmt.Sprintf("%v\t%v\n", k, v))
+	cnter := counter.NewCounterFromMap(counts)
+	keys, freqs := cnter.MostCommon()
+
+	for i := 0; i < len(keys); i++ {
+		writer.WriteString(fmt.Sprintf("%v\t%v\n", keys[i], freqs[i]))
 	}
 
 	writer.Flush()

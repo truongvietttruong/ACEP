@@ -8,6 +8,8 @@ This repository is going to work as a reservoir of analysis results obtained fro
 
 If you are interested if your email address is in a data breach, use [Have I Been Pwned](https://haveibeenpwned.com/) or similar services.
 
+**The data contained in this repo is for educational purposes only!!!**
+
 ## Index
 
 - [Cit0day](./Data/Cit0day)
